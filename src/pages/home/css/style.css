@@ -1,0 +1,230 @@
+/* Estilos gerais para o corpo da página */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Estilos para o cabeçalho */
+header {
+    box-sizing: border-box;
+    background-color: #2B1D0E;
+    width: 100%;
+    height: 60px; /* Altura automática para se ajustar ao conteúdo */
+    padding: 10px 20px; /* Adicionei padding para espaçamento interno */
+    border: #4A3B2C 1px solid;
+    border-radius: 8px;
+    display: flex; /* Torna o header um container flexível */
+    justify-content: space-between; /* Espaça a logo e a barra de navegação */
+    align-items: center; /* Alinha verticalmente os itens */
+}
+
+/* Estilos para a barra de navegação */
+nav {
+    display: flex;
+    justify-content: space-between; /* Distribui o espaço entre os itens (logo e form/div) */
+    align-items: center;
+    max-width: 1200px; /* Largura máxima */
+    width: 100%; /* Garante que o nav ocupe a largura disponível dentro do header */
+    margin: 0 auto; /* Centraliza o nav horizontalmente */
+   
+}
+
+/* Estilos para a imagem da logo */
+nav a img {
+    height: auto; /* Mantém a proporção da imagem */
+    max-height: 100px; /* Define uma altura máxima para a logo (ajuste conforme necessário) */
+    max-width: 150%; /* Garante que a imagem não ultrapasse a largura do container */
+    width: auto; /* Mantém a proporção da imagem */
+
+}
+
+/* Estilos para o formulário de busca */
+form.search-container {
+    display: flex;
+    align-items: center;
+    border-radius: 30px;
+    overflow: hidden;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin-left: 20px; /* Adicionei margem para separar da logo */
+}
+
+/* Estilos para placeholder do input de busca */
+nav input::placeholder {
+    color: #2B1D0E;
+    font-size: 1em;
+    font-style: italic;
+    border-radius: 8px;
+    padding: 10px 15px;
+}
+
+/* Estilos para o campo de entrada de texto da busca */
+nav input[type="text"] {
+    padding: 10px 15px;
+    border: none;
+    outline: none;
+    font-size: 1em; /* Tamanho da fonte */
+    width: 200px;
+}
+
+/* Estilos para o botão de busca */
+nav button[type="submit"] {
+    padding: 10px 15px;
+    border: none;
+    background-color: #2B1D0E;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 0 30px 30px 0;
+}
+
+/* Estilos para a div dos ícones */
+div {
+    display: flex;
+    justify-content: flex-end; /* Alinha os ícones à direita */
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1px; 
+    margin: 0; /* Removi a margem automática para controlar o posicionamento */
+    /* max-width: 1200px; Removi a largura máxima aqui, o nav já controla isso */
+    
+}
+
+/* Estilos para os ícones */
+div a {
+
+    color: #fff;
+    font-size: 1.5em;
+    text-decoration: none; 
+    margin-left: 10px; /* Espaçamento entre os ícones */
+}
+
+div a:hover {
+    color: #ebdd8f;
+}
+
+/* Estilos do carrossel */
+.carousel-container {
+    width: 100%; /* O carrossel ocupará 100% da largura do elemento pai */
+    max-width: none; /* Remova a largura máxima para permitir que ele se estenda */
+    margin: 40px 0 0; /* Remova a margem automática horizontal para ocupar toda a largura */
+    overflow: hidden; /* Esconde as imagens fora da área visível */
+    height: 300px; /* Mantenha a altura fixa ou ajuste conforme necessário */
+}
+
+.carousel-slide {
+    display: flex; /* Alinha as imagens horizontalmente */
+    width: 300%; /* Para 3 imagens */
+    transition: transform 0.5s ease-in-out; /* Transição suave para a animação */
+    transform: translateX(0); /* Posição inicial do primeiro slide */
+    height: 100%; /* Garante que o slide ocupe a altura do container */
+}
+
+.carousel-slide img {
+    width: calc(100% / 3); /* Cada imagem ocupa 1/3 da largura do .carousel-slide */
+    height: 100%; /* Garante que a imagem ocupe a altura do slide */
+    object-fit: cover; /* Preenche todo o espaço, cortando as bordas se necessário */
+    display: block; /* Remove espaços em branco abaixo da imagem */
+    border-radius: 8px; /* Adiciona bordas arredondadas às imagens */
+    margin: 0; /* Remove margens para evitar espaços indesejados */
+    padding: 0; /* Remove preenchimento para evitar espaços indesejados */
+   
+}
+
+
+/* Estilos para o container de localização */
+.location-container {
+    display: flex;
+    align-items: center; /* Alinha verticalmente o ícone e o texto */
+    padding: 10px 20px; /* Adiciona um espaçamento interno */
+    background-color: #f9f9f9; /* Cor de fundo suave */
+    border-top: 1px solid #eee; /* Uma linha sutil na parte superior */
+    font-size: 0.9em; /* Tamanho da fonte um pouco menor */
+    color: #555; /* Cor do texto */
+}
+
+.location-container i {
+    margin-right: 10px; /* Espaço entre o ícone e o texto */
+    font-size: 1.2em; /* Tamanho do ícone um pouco maior que o texto */
+    color: #333; /* Cor do ícone */
+}
+
+/* Estilo do container de categorias */
+.classification-highlight {
+    display: flex;
+    border-radius: 8px;
+    justify-content: space-around; /* Distribui os blocos igualmente com espaço entre eles */
+    padding: 15px; /* Adicione um pouco de padding para respiro */
+    width: 90%; /* Ocupa 90% da largura da tela */
+    margin: 20px auto; /* Centraliza o container horizontalmente com margens */
+    background-color: #f8f8f8; /* Adicione uma cor de fundo para visualização */
+    border: 1px solid #eee; /* Adicione uma borda sutil */
+}
+
+/* Estilo de cada categoria */
+.classification-highlight a.category-block {
+    background-color: #ebdd8f;
+    color: #333;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    font-weight: bold;
+    text-align: center;
+    flex-grow: 1; /* Faz os itens crescerem igualmente para preencher o espaço */
+    margin: 5px; /* Adicione um pouco de margem entre os itens */
+    transition: background-color 0.3s ease, border 0.3s ease; /* Adicionei a transição para a borda */
+    border: 1px solid #2B1D0E; /* Adiciona uma borda preta de 1 pixel */
+}
+
+.classification-highlight a.category-block:hover {
+    background-color: #eee;
+}
+.category-content {
+    border: 1px solid #ccc;
+    margin-top: 50px; /* Adiciona um espaço entre a barra de categorias e o primeiro conteúdo, e entre os conteúdos */
+    padding: 15px;
+    background-color: #f9f9f9; /* Uma cor de fundo suave para destacar o conteúdo */
+    border-radius: 5px;
+ 
+    
+}
+/* Estilos para o conteúdo de cada categoria */
+.category-content h {
+    color: #2B1D0E; /* Define a cor do texto do título */
+    font-size: 2em; /* Define o tamanho da fonte (em unidades relativas) */
+    margin-top: 0; /* Remove a margem superior padrão */
+    margin-bottom: 10px; /* Adiciona um espaço abaixo do título */
+    text-align: right; /* Alinha o texto à direita */
+    font-family: 'Arial', sans-serif; /* Define a fonte do título */
+    font-style: italic; /* Define o estilo da fonte como itálico */
+
+
+}
+
+.category-content p {
+    color: #555; /* Define a cor do texto do parágrafo */
+    font-size: 1em; /* Define o tamanho da fonte */
+    line-height: 1.6; /* Define o espaçamento entre as linhas */
+    text-align: right; /* Alinha o texto à direita */
+    margin-top: 0; /* Remove a margem superior padrão */
+    margin-bottom: 15px; /* Adiciona um espaço abaixo do parágrafo */
+    word-spacing: 1px; /* Espaçamento entre palavras */
+    font-family: 'Arial', sans-serif; /* Define a fonte do parágrafo */
+}
+.footer {
+    background-color: #2B1D0E; /* Cor de fundo do rodapé */
+    color: #fff; /* Cor do texto do rodapé */
+    padding: 20px 0; /* Espaçamento interno do rodapé */
+    text-align: center; /* Centraliza o texto no rodapé */
+    position: relative; /* Permite o posicionamento absoluto dos filhos */
+}   
+.footer p {
+    margin: 0; /* Remove a margem padrão do parágrafo */
+    font-size: 0.9em; /* Tamanho da fonte do texto do rodapé */
+    color: #fff; /* Cor do texto do rodapé */
+}
