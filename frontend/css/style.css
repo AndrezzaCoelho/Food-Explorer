@@ -558,6 +558,225 @@ footer .copyright {
     /* display: none; /* Pode esconder se o contador for 0 */
 }
 
+/* Estilos do Modal da Sacola */
+.modal {
+    display: none; /* Escondido por padrão */
+    position: fixed; /* Fixo na tela */
+    z-index: 1000; /* Acima de outros elementos */
+    left: 0;
+    top: 0;
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    overflow: auto; /* Habilita rolagem se o conteúdo for muito grande */
+    background-color: rgba(0,0,0,0.4); /* Fundo semi-transparente */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto; /* Para centralizar */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Largura do modal */
+    max-width: 600px; /* Largura máxima */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    position: relative;
+    max-height: 90vh; /* Altura máxima para caber na tela */
+    display: flex;
+    flex-direction: column;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute; /* Posiciona o botão de fechar */
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.cart-items-container {
+    flex-grow: 1; /* Permite que o container de itens cresça e ocupe o espaço */
+    overflow-y: auto; /* Adiciona scroll se a lista de itens for grande */
+    margin-bottom: 20px;
+    padding-right: 10px; /* Espaço para a barra de rolagem */
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-grow: 1;
+}
+
+.cart-item-info img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.cart-item-details h4 {
+    margin: 0;
+    font-size: 1.1em;
+    color: #333;
+}
+
+.cart-item-details p {
+    margin: 5px 0 0;
+    font-size: 0.9em;
+    color: #777;
+}
+
+.cart-item-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cart-item-controls button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cart-item-controls button.quantity-btn {
+    background-color: #007bff;
+    padding: 3px 8px;
+}
+
+.cart-item-controls span {
+    font-weight: bold;
+}
+
+.cart-summary {
+    text-align: right;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.btn-checkout {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    margin-top: 10px;
+}
+
+.btn-checkout:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* Estilos para o ícone do carrinho */
+#cartIcon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color:  #3C5D3F; /* Cor do Coco Bambu */
+    color: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 999; /* Garante que fique acima de outros elementos */
+}
+
+#cartIcon i {
+    margin-right: 5px; /* Espaço entre o ícone e o contador */
+}
+
+#cartItemCount {
+    background-color: #ff9800;
+    color: white;
+    border-radius: 50%;
+    padding: 5px 8px;
+    font-size: 0.7em;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    transform: translate(50%, -50%); /* Ajusta a posição */
+    min-width: 25px; /* Garante que o círculo seja visível mesmo com 1 dígito */
+    text-align: center;
+}
+
+/* --- Estilos para o botão "Limpar Busca" --- */
+.btn-clear-search {
+    background-color: #5A4B3C; /* Um marrom médio, que combine com sua paleta */
+    color: #FFFFFF;
+    border: 1px solid #5A4B3C;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px; /* Espaço acima dos resultados */
+    margin-bottom: 20px; /* Espaço abaixo, se houver */
+    display: block; /* Para ocupar a largura total do container */
+    width: fit-content; /* Ajusta a largura ao conteúdo */
+    margin-left: auto; /* Centraliza */
+    margin-right: auto; /* Centraliza */
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-clear-search:hover {
+    background-color: #6D5E4F; /* Um pouco mais escuro no hover */
+    border-color: #6D5E4F;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.btn-clear-search i {
+    margin-right: 8px; /* Espaço entre o ícone e o texto */
+}
+
+/* Ajuste para quando o botão estiver no searchResultsContainer */
+#searchResultsContainer .btn-clear-search {
+    margin-top: 15px; /* Ajuste a margem se necessário */
+    margin-bottom: 15px;
+}
+
 /* Media Queries para ajuste em telas menores */
 @media (max-width: 768px) {
     #scrollToTopBtn {

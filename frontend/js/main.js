@@ -1,4 +1,4 @@
-// --- Definições Globais ---
+// --- Definições Globais (Mantenha as suas existentes e adicione estas) ---
 const mapeamentoCategorias = {
     'Beef': 'destaques',
     'Chicken': 'executivos',
@@ -81,12 +81,28 @@ const descricoesGenericas = {
     ]
 };
 
+// --- NOVAS VARIÁVEIS GLOBAIS PARA A SACORA ---
+const cart = []; // Array para armazenar os itens na sacola
+const cartItemCountSpan = document.getElementById('cartItemCount');
+const cartTotalSpan = document.getElementById('cartTotal');
+const cartItemsContainer = document.getElementById('cartItemsContainer');
+const cartModal = document.getElementById('cartModal');
+const closeButton = document.querySelector('.close-button');
+const cartIcon = document.getElementById('cartIcon');
+const checkoutButton = document.getElementById('checkoutButton');
+const emptyCartMessage = document.getElementById('emptyCartMessage');
+
+// NOVO: Elementos da busca
+const searchForm = document.querySelector('header nav form'); // Seleciona o formulário de busca
+const searchInput = document.querySelector('header nav input[type="text"]'); // Seleciona o input de busca
+const searchResultsContainer = document.getElementById('searchResultsContainer'); // Container para os resultados da busca
+
 // Função para gerar um preço aleatório (já que a API não oferece)
 function gerarPrecoAleatorio() {
     const min = 30; // Preço mínimo
     const max = 120; // Preço máximo
     // Gera um preço entre min e max, com centavos
-    return (Math.random() * (max - min) + min).toFixed(2);
+    return parseFloat((Math.random() * (max - min) + min).toFixed(2)); // Retorna como número
 }
 
 // Função para obter uma descrição genérica baseada na categoria local
@@ -97,6 +113,195 @@ function getDescricaoGenerica(categoriaLocal) {
         return descricoes[randomIndex];
     }
     return 'Delicioso prato preparado com ingredientes frescos e muito carinho.';
+}
+
+// Função para criar e exibir um card de prato (reutilizável)
+function criarCardPrato(pratoResumido, categoriaLocal) {
+    const nomeOriginal = pratoResumido.strMeal;
+    const nomeTraduzido = nomePratoTraduzido[nomeOriginal] || nomeOriginal;
+    const descricaoPrato = getDescricaoGenerica(categoriaLocal);
+    const precoPrato = gerarPrecoAleatorio();
+
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    const img = document.createElement('img');
+    img.src = pratoResumido.strMealThumb;
+    img.alt = nomeTraduzido;
+    card.appendChild(img);
+
+    const h2 = document.createElement('h2');
+    h2.textContent = nomeTraduzido;
+    card.appendChild(h2);
+
+    const pDescription = document.createElement('p');
+    pDescription.textContent = descricaoPrato;
+    card.appendChild(pDescription);
+
+    const pPrice = document.createElement('p');
+    pPrice.classList.add('dish-price');
+    pPrice.textContent = `R$ ${precoPrato.toFixed(2).replace('.', ',')}`;
+    card.appendChild(pPrice);
+
+    const buttonContainer = document.createElement('div');
+    buttonContainer.classList.add('card-buttons');
+    card.appendChild(buttonContainer);
+
+    const detailsButton = document.createElement('button');
+    detailsButton.classList.add('btn', 'btn-details');
+    detailsButton.textContent = 'Detalhes';
+    detailsButton.addEventListener('click', () => {
+        alert(`Detalhes do prato: ${nomeTraduzido}\nPreço: R$ ${precoPrato.toFixed(2).replace('.', ',')}\nDescrição: ${descricaoPrato}`);
+        console.log('Detalhes do prato:', {
+            id: pratoResumido.idMeal,
+            name: nomeTraduzido,
+            category: categoriaLocal, // Passa a categoria local aqui para o console.log
+            description: descricaoPrato,
+            price: precoPrato,
+            image: pratoResumido.strMealThumb
+        });
+    });
+    buttonContainer.appendChild(detailsButton);
+
+    const addToCartButton = document.createElement('button');
+    addToCartButton.classList.add('btn', 'btn-add-to-cart');
+    addToCartButton.textContent = '+';
+    addToCartButton.addEventListener('click', () => {
+        addToCart({
+            id: pratoResumido.idMeal,
+            name: nomeTraduzido,
+            price: precoPrato,
+            image: pratoResumido.strMealThumb
+        });
+    });
+    buttonContainer.appendChild(addToCartButton);
+
+    return card;
+}
+
+// --- FUNÇÕES DA SACORA (NOVAS) ---
+function updateCartDisplay() {
+    cartItemsContainer.innerHTML = ''; // Limpa o conteúdo atual da sacola
+
+    if (cart.length === 0) {
+        emptyCartMessage.style.display = 'block'; // Mostra a mensagem de sacola vazia
+        checkoutButton.disabled = true; // Desabilita o botão de finalizar pedido
+    } else {
+        emptyCartMessage.style.display = 'none'; // Esconde a mensagem de sacola vazia
+        checkoutButton.disabled = false; // Habilita o botão de finalizar pedido
+        let total = 0;
+        cart.forEach(item => {
+            const itemElement = document.createElement('div');
+            itemElement.classList.add('cart-item');
+            itemElement.innerHTML = `
+                <div class="cart-item-info">
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="cart-item-details">
+                        <h4>${item.name}</h4>
+                        <p>R$ ${item.price.toFixed(2).replace('.', ',')}</p>
+                    </div>
+                </div>
+                <div class="cart-item-controls">
+                    <button class="quantity-btn decrease-quantity" data-id="${item.id}">-</button>
+                    <span>${item.quantity}</span>
+                    <button class="quantity-btn increase-quantity" data-id="${item.id}">+</button>
+                    <button class="remove-item-btn" data-id="${item.id}">Remover</button>
+                </div>
+            `;
+            cartItemsContainer.appendChild(itemElement);
+            total += item.price * item.quantity;
+        });
+        cartTotalSpan.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+    }
+    cartItemCountSpan.textContent = cart.reduce((sum, item) => sum + item.quantity, 0); // Atualiza o contador de itens na sacola
+}
+
+function addToCart(itemDetails) {
+    const existingItem = cart.find(item => item.id === itemDetails.id);
+    if (existingItem) {
+        existingItem.quantity++;
+    } else {
+        cart.push({ ...itemDetails, quantity: 1 });
+    }
+    updateCartDisplay();
+    alert(`"${itemDetails.name}" adicionado à sacola! Quantidade: ${existingItem ? existingItem.quantity : 1}`);
+}
+
+function removeFromCart(itemId) {
+    const itemIndex = cart.findIndex(item => item.id === itemId);
+    if (itemIndex > -1) {
+        cart.splice(itemIndex, 1); // Remove o item
+        updateCartDisplay();
+    }
+}
+
+function updateItemQuantity(itemId, change) {
+    const item = cart.find(item => item.id === itemId);
+    if (item) {
+        item.quantity += change;
+        if (item.quantity <= 0) {
+            removeFromCart(itemId);
+        }
+        updateCartDisplay();
+    }
+}
+
+// --- Lógica de Busca de Pratos (NOVA FUNÇÃO) ---
+async function searchMeals(query) {
+    searchResultsContainer.innerHTML = ''; // Limpa resultados anteriores
+    searchResultsContainer.style.display = 'block'; // Exibe o container de resultados
+
+    // Esconde as seções de categorias normais enquanto os resultados da busca são exibidos
+    for (const key in containersPorCategoria) {
+        if (containersPorCategoria[key]) {
+            containersPorCategoria[key].closest('.category-content').style.display = 'none';
+        }
+    }
+
+    try {
+        const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`);
+        const data = await response.json();
+
+        if (data.meals) {
+            // Cria um cabeçalho para os resultados da busca
+            const searchHeading = document.createElement('h2');
+            searchHeading.textContent = `Resultados para "${query}"`;
+            searchHeading.style.color = '#ebdd8f'; // Mesma cor dos títulos de categoria
+            searchHeading.style.fontSize = '2em';
+            searchHeading.style.marginBottom = '10px';
+            searchResultsContainer.appendChild(searchHeading);
+
+            const resultsGrid = document.createElement('div');
+            resultsGrid.classList.add('pratos-categoria-container'); // Reutiliza o estilo de grid dos cards
+
+            // Limita o número de resultados da busca para evitar sobrecarga
+            const mealsToDisplay = data.meals.slice(0, 12); // Exemplo: até 12 resultados
+
+            mealsToDisplay.forEach(meal => {
+                // Tentativa de mapear a categoria da API para uma categoria local para a descrição
+                const categoriaTheMealDB = meal.strCategory;
+                const categoriaLocalParaDescricao = mapeamentoCategorias[categoriaTheMealDB] || 'executivos'; // Fallback
+
+                const card = criarCardPrato(meal, categoriaLocalParaDescricao);
+                resultsGrid.appendChild(card);
+            });
+            searchResultsContainer.appendChild(resultsGrid);
+        } else {
+            const noResults = document.createElement('p');
+            noResults.textContent = `Nenhum prato encontrado para "${query}".`;
+            noResults.style.color = '#CCCCCC';
+            noResults.style.fontSize = '1.2em';
+            noResults.style.textAlign = 'center';
+            searchResultsContainer.appendChild(noResults);
+        }
+    } catch (error) {
+        console.error('Erro ao buscar pratos:', error);
+        const errorMessage = document.createElement('p');
+        errorMessage.textContent = 'Ocorreu um erro ao buscar os pratos. Tente novamente mais tarde.';
+        errorMessage.style.color = 'red';
+        errorMessage.style.textAlign = 'center';
+        searchResultsContainer.appendChild(errorMessage);
+    }
 }
 
 // --- Lógica de Carregamento dos Pratos da TheMealDB ---
@@ -116,7 +321,7 @@ fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list') // URL para lis
                 const containerParaPratos = containersPorCategoria[nomeCategoriaLocal];
 
                 // Limpa o conteúdo existente do container antes de adicionar novos pratos
-                containerParaPratos.innerHTML = ''; 
+                containerParaPratos.innerHTML = '';
 
                 fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${nomeCategoriaTheMealDB}`)
                     .then(response => response.json())
@@ -130,79 +335,8 @@ fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list') // URL para lis
                         const pratosParaExibir = pratosData.meals.slice(0, 6); // Exemplo: 6 pratos por categoria
 
                         for (const pratoResumido of pratosParaExibir) {
-                            const nomeOriginal = pratoResumido.strMeal;
-                            // Usar a tradução manual se existir, senão, usar o nome original
-                            const nomeTraduzido = nomePratoTraduzido[nomeOriginal] || nomeOriginal;
-                            
-                            const descricaoPrato = getDescricaoGenerica(nomeCategoriaLocal);
-                            const precoPrato = gerarPrecoAleatorio();
-
-                            // --- INÍCIO: ALTERAÇÃO PARA CRIAR ELEMENTOS E BOTÕES ---
-                            const card = document.createElement('div');
-                            card.className = 'card';
-
-                            const img = document.createElement('img');
-                            img.src = pratoResumido.strMealThumb;
-                            img.alt = nomeTraduzido;
-                            card.appendChild(img);
-
-                            const h2 = document.createElement('h2');
-                            h2.textContent = nomeTraduzido;
-                            card.appendChild(h2);
-
-                            const pDescription = document.createElement('p');
-                            pDescription.textContent = descricaoPrato;
-                            card.appendChild(pDescription);
-
-                            const pPrice = document.createElement('p');
-                            pPrice.classList.add('dish-price');
-                            pPrice.textContent = `R$ ${precoPrato.replace('.', ',')}`;
-                            card.appendChild(pPrice);
-
-                            // Container para os botões
-                            const buttonContainer = document.createElement('div');
-                            buttonContainer.classList.add('card-buttons');
-                            card.appendChild(buttonContainer);
-
-                            // Botão Detalhes
-                            const detailsButton = document.createElement('button');
-                            detailsButton.classList.add('btn', 'btn-details');
-                            detailsButton.textContent = 'Detalhes';
-                            // Adicionando um listener de evento para o botão Detalhes
-                            detailsButton.addEventListener('click', () => {
-                                // Aqui você pode adicionar sua lógica para mostrar detalhes do prato
-                                // Por exemplo, abrir um modal com mais informações ou navegar para uma página de detalhes
-                                alert(`Detalhes do prato: ${nomeTraduzido}\nPreço: R$ ${precoPrato.replace('.', ',')}\nDescrição: ${descricaoPrato}`);
-                                console.log('Detalhes do prato:', {
-                                    id: pratoResumido.idMeal,
-                                    name: nomeTraduzido,
-                                    category: nomeCategoriaTheMealDB,
-                                    description: descricaoPrato,
-                                    price: precoPrato,
-                                    image: pratoResumido.strMealThumb
-                                });
-                            });
-                            buttonContainer.appendChild(detailsButton);
-
-                            // Botão Adicionar à Sacola
-                            const addToCartButton = document.createElement('button');
-                            addToCartButton.classList.add('btn', 'btn-add-to-cart');
-                            addToCartButton.textContent = '+';
-                            // Adicionando um listener de evento para o botão Adicionar à Sacola
-                            addToCartButton.addEventListener('click', () => {
-                                // Aqui você pode adicionar sua lógica para adicionar o item ao carrinho
-                                // Por exemplo, adicionar a um array no seu JavaScript, atualizar um contador, etc.
-                                alert(`"${nomeTraduzido}" adicionado à sacola!`);
-                                console.log('Item adicionado à sacola:', {
-                                    id: pratoResumido.idMeal,
-                                    name: nomeTraduzido,
-                                    price: precoPrato
-                                });
-                            });
-                            buttonContainer.appendChild(addToCartButton);
-
+                            const card = criarCardPrato(pratoResumido, nomeCategoriaLocal);
                             containerParaPratos.appendChild(card);
-                            // --- FIM: ALTERAÇÃO PARA CRIAR ELEMENTOS E BOTÕES ---
                         }
                     })
                     .catch(error => console.error(`Erro ao buscar pratos da categoria '${nomeCategoriaTheMealDB}':`, error));
@@ -213,14 +347,14 @@ fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list') // URL para lis
     })
     .catch(error => console.error('Erro ao buscar categorias principais da TheMealDB:', error));
 
-// --- Lógica do Carrossel ---
+// --- Lógica do Carrossel (Mantenha a sua existente) ---
 document.addEventListener('DOMContentLoaded', () => {
     const carouselContainer = document.querySelector('.carousel-container');
     const carouselSlide = document.querySelector('.carousel-slide');
 
     if (carouselSlide && carouselContainer) {
         const images = document.querySelectorAll('.carousel-slide img');
-        const numOriginalImages = images.length; 
+        const numOriginalImages = images.length;
 
         // Garante que haja imagens para o carrossel
         if (numOriginalImages > 0) {
@@ -230,14 +364,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Adiciona o clone da primeira imagem no final e o clone da última no início
             carouselSlide.appendChild(firstImageClone);
-            carouselSlide.prepend(lastImageClone);    
+            carouselSlide.prepend(lastImageClone);
         }
 
         const allImages = document.querySelectorAll('.carousel-slide img');
-        const totalImages = allImages.length; 
+        const totalImages = allImages.length;
 
         let counter = 1; // Começa na primeira imagem real (após o clone da última)
-        let slideWidth = carouselContainer.clientWidth; 
+        let slideWidth = carouselContainer.clientWidth;
+
+        // --- CORREÇÃO AQUI: Definir a largura total do carouselSlide ---
+        // Isso é crucial para que o flexbox saiba o quanto de espaço as imagens precisam,
+        // garantindo que fiquem lado a lado sem corte.
+        carouselSlide.style.width = `${slideWidth * totalImages}px`;
 
         // Posiciona o carrossel no início da primeira imagem real sem transição
         carouselSlide.style.transition = 'none';
@@ -264,27 +403,123 @@ document.addEventListener('DOMContentLoaded', () => {
             // Se chegou ao clone da primeira imagem, volta para a primeira imagem real
             if (counter >= totalImages - 1) {
                 carouselSlide.style.transition = 'none';
-                counter = 1; 
+                counter = 1;
                 carouselSlide.style.transform = 'translateX(' + (-slideWidth * counter) + 'px)';
             }
             // Se chegou ao clone da última imagem, volta para a última imagem real
             if (counter <= 0) {
                 carouselSlide.style.transition = 'none';
-                counter = numOriginalImages; 
+                counter = numOriginalImages;
                 carouselSlide.style.transform = 'translateX(' + (-slideWidth * counter) + 'px)';
             }
         });
-        
-        //logica do botão voltar ao topo
-        
 
-        // Ajusta a largura do slide em caso de redimensionamento da janela
+        // --- CORREÇÃO AQUI: Ajusta a largura do slide em caso de redimensionamento da janela ---
+        // Isso é vital para a responsividade! Quando a tela muda, o carrossel se adapta.
         window.addEventListener('resize', () => {
             slideWidth = carouselContainer.clientWidth;
-            carouselSlide.style.transition = 'none'; // Desabilita transição para ajuste instantâneo
+            // Recalcula a largura total do carouselSlide para o novo tamanho do container
+            carouselSlide.style.width = `${slideWidth * totalImages}px`;
+
             carouselSlide.style.transform = 'translateX(' + (-slideWidth * counter) + 'px)';
+            // Reabilita a transição após um pequeno atraso para que a próxima animação seja suave
+            setTimeout(() => {
+                carouselSlide.style.transition = "transform 0.5s ease-in-out";
+            }, 0);
         });
     } else {
         console.warn("Elemento .carousel-slide ou .carousel-container não encontrado.");
     }
+
+    // --- Lógica do Botão Voltar ao Topo (Mantenha a sua existente) ---
+    const backToTopButton = document.getElementById('scrollToTopBtn'); // Corrigi o ID aqui
+    const scrollThreshold = 300; // Distância em pixels para mostrar o botão
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > scrollThreshold) {
+            backToTopButton.style.display = 'block'; // Mostra o botão
+        } else {
+            backToTopButton.style.display = 'none'; // Esconde o botão
+        }
+    });
+
+    // Adiciona evento de clique para o botão "Voltar ao Topo"
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' // Rolagem suave
+        });
+    });
+
+    // --- Event Listeners para o Modal da Sacola (NOVOS) ---
+    cartIcon.addEventListener('click', () => {
+        cartModal.style.display = 'flex'; // Exibe o modal (usando flex para centralizar)
+        updateCartDisplay(); // Garante que a sacola esteja atualizada ao abrir
+    });
+
+    closeButton.addEventListener('click', () => {
+        cartModal.style.display = 'none'; // Esconde o modal
+    });
+
+    // Fecha o modal se clicar fora do conteúdo
+    window.addEventListener('click', (event) => {
+        if (event.target == cartModal) {
+            cartModal.style.display = 'none';
+        }
+    });
+
+    // Adiciona listener para os botões de controle de quantidade e remover na sacola
+    cartItemsContainer.addEventListener('click', (event) => {
+        const target = event.target;
+        const itemId = target.dataset.id; // Pega o ID do item do atributo data-id
+
+        if (target.classList.contains('increase-quantity')) {
+            updateItemQuantity(itemId, 1);
+        } else if (target.classList.contains('decrease-quantity')) {
+            updateItemQuantity(itemId, -1);
+        } else if (target.classList.contains('remove-item-btn')) {
+            removeFromCart(itemId);
+        }
+    });
+
+    checkoutButton.addEventListener('click', () => {
+        if (cart.length > 0) {
+            alert('Pedido finalizado! Obrigado por sua compra.');
+            cart.length = 0; // Esvazia a sacola
+            updateCartDisplay(); // Atualiza a exibição da sacola
+            cartModal.style.display = 'none'; // Fecha o modal
+        } else {
+            alert('Sua sacola está vazia. Adicione itens antes de finalizar o pedido.');
+        }
+    });
+
+    // --- Event Listener para o formulário de busca (NOVO) ---
+    searchForm.addEventListener('submit', async (event) => {
+        event.preventDefault(); // Previne o recarregamento da página
+        const searchTerm = searchInput.value.trim(); // Pega o valor do input e remove espaços em branco
+
+        if (searchTerm) {
+            // Esconde o carrossel quando a busca é ativada
+            if (carouselContainer) {
+                carouselContainer.style.display = 'none';
+            }
+            await searchMeals(searchTerm);
+        } else {
+            alert('Por favor, digite um termo para buscar.');
+        }
+    });
+});
+
+// NOVO: Obtenha a referência ao link da logo
+const logoLink = document.getElementById('logoLink'); // Ou use querySelector('.nav-logo')
+
+// ... (suas outras variáveis e funções) ...
+
+// Adicione este event listener dentro do DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+    // ... (seus event listeners existentes) ...
+
+    logoLink.addEventListener('click', (event) => {
+        event.preventDefault(); // Impede o comportamento padrão de link
+        resetView(); // Chama a função que reseta a visualização
+    });
 });

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Coco Bambu</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5KwQdfQ5sA5p3M1/qL6+JFxvMiwW4zW4h0B9w3j2Y3Q2gI2p/3w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <header>
@@ -22,7 +22,6 @@
             <div>
                 <a href="#"><i class="fas fa-bell"></i><span class="notification-badge"></span></a> 
                 <a href="#"><i class="fas fa-user-circle"></i></a>
-
             </div>
         </nav>
     </header>
@@ -34,6 +33,16 @@
             <img src="assets/imagem cocobambu 2.jpg" alt="Imagem 3">
         </div>
     </div>
+
+     <section id="searchResultsContainer" class="category-content" style="display: none;">
+        </section>
+        
+    <section id="searchResultsContainer" class="category-content" style="display: none;">
+    <button id="clearSearchBtn" class="btn btn-clear-search" style="display: none;">
+        <i class="fas fa-undo"></i> Voltar ao Cardápio
+    </button>
+    </section>
+
 
     <div class="location-container">
         <i class="fas fa-map-marker-alt"></i>
@@ -81,13 +90,29 @@
         </div>
     </main>
     
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Sua Sacola</h2>
+            <div id="cartItemsContainer" class="cart-items-container">
+                <p id="emptyCartMessage" style="text-align: center; color: #666;">Sua sacola está vazia.</p>
+            </div>
+            <div class="cart-summary">
+                <p>Total: <span id="cartTotal">R$ 0,00</span></p>
+                <button id="checkoutButton" class="btn btn-checkout" disabled>Finalizar Pedido</button>
+            </div>
+        </div>
+    </div>
+
+
     <button id="scrollToTopBtn" title="Voltar ao Topo">
         <i class="fa-solid fa-arrow-up"></i>
     </button>
 
     <div id="cartIcon" title="Ver Sacola">
         <i class="fa-solid fa-shopping-bag"></i>
-        <span id="cartItemCount">0</span> </div>
+        <span id="cartItemCount">0</span> 
+    </div>
 
     <footer>
         <div class="container">
@@ -99,9 +124,9 @@
             <div class="redes-sociais">
                 <h3>Redes Sociais</h3>
                 <ul>
-                    <li><a href="#" target="_blank"><img src="assets/social/facebook.png" alt="Facebook"></a></li>
-                    <li><a href="#" target="_blank"><img src="assets/social/instagram.png" alt="Instagram"></a></li>
-                    <li><a href="#" target="_blank"><img src="assets/social/linkedin.png" alt="LinkedIn"></a></li>
+                    <li><a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
+                    <li><a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+                    <li><a href="https://www.linkedin.com/" target="_blank"><i class="fa-brands fa-linkedin"></i></a></li>
                 </ul>
             </div>
             <div class="contato">
