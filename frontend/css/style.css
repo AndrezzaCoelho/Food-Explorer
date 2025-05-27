@@ -1,7 +1,20 @@
 /*
  * ========================================
  * ESTILOS GERAIS
- * Base para todo o site: fonte, margens, cores de fundo e texto.
+ *  Configurações fundamentais para todo o layout:
+   - Fontes:
+     - Primária: 'Arial', sans-serif (para todo o texto geral).
+   - Paleta de Cores:
+     - **Verde Principal**: `var(--primary-green)` - `#3C5D3F` (usado para botões, detalhes e elementos importantes).
+     - **Verde Claro**: `var(--light-green)` - `#6B8F71` (para destaques mais sutis e efeitos de hover).
+     - **Dourado/Amarelo de Acento**: `var(--accent-gold)` - `#EBDD8F` (para títulos e elementos de destaque visual).
+     - **Fundo Escuro Principal**: `var(--dark-background)` - `#1A1A1A` (a cor de fundo predominante do site).
+     - **Cor do Texto Padrão**: `var(--text-color)` - `#FFFFFF` (branco, para contraste com o fundo escuro).
+     - **Cinza Claro**: `var(--light-gray)` - `#CCCCCC` (para textos secundários, bordas ou estados desabilitados).
+     - **Vermelho de Erro**: `var(--red-error)` - `#FF6B6B` (para mensagens de erro ou ações de remoção).
+   - Modelo de Caixa (Box Model): Uso de `margin: 0; padding: 0;` para resetar padrões e `width: 100%; overflow-x: hidden;` para controle total da largura e evitar rolagem horizontal.
+   - Tipografia: `line-height: 1.6;` para melhor legibilidade do texto.
+   - Responsividade Básica: `max-width: 100%; height: auto;` para imagens, garantindo que se adaptem à largura da tela.
  * ========================================
  */
 body {
