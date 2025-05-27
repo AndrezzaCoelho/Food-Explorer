@@ -1,22 +1,32 @@
-/* Estilos gerais para o corpo da página */
+/*
+ * ========================================
+ * ESTILOS GERAIS
+ * Base para todo o site: fonte, margens, cores de fundo e texto.
+ * ========================================
+ */
 body {
     font-family: sans-serif;
     margin: 0;
     padding: 0;
     background-color: #F5F5DC; /* Fundo bege claro */
-    color: #333; /* Cor do texto principal no fundo claro - pode ser ajustado */
+    color: #333; /* Texto principal */
     line-height: 1.6;
 }
 
-/* Estilos para o cabeçalho */
+/*
+ * ========================================
+ * CABEÇALHO (HEADER)
+ * Container superior da página: logo, busca e ícones de navegação.
+ * Flexível para responsividade.
+ * ========================================
+ */
 header {
     box-sizing: border-box;
-    background-color: #2B1D0E; /* Mantém seu marrom escuro atual */
+    background-color: #2B1D0E; /* Marrom escuro */
     width: 100%;
-    height: auto;
     min-height: 60px;
     padding: 10px 20px;
-    border: #4A3B2C 1px solid; /* Borda um pouco mais escura */
+    border: #4A3B2C 1px solid;
     border-radius: 8px;
     display: flex;
     justify-content: space-between;
@@ -24,7 +34,7 @@ header {
     flex-wrap: wrap;
 }
 
-/* Estilos para a barra de navegação - Sem grandes mudanças aqui */
+/* Barra de navegação interna (logo, busca, ícones) */
 nav {
     display: flex;
     justify-content: space-between;
@@ -35,7 +45,7 @@ nav {
     flex-wrap: wrap;
 }
 
-/* Estilos para a imagem da logo - Sem mudanças */
+/* Logo da navegação */
 nav a img {
     height: auto;
     max-height: 80px;
@@ -43,38 +53,38 @@ nav a img {
     max-width: 100%;
 }
 
-/* Estilos para o formulário de busca */
+/* Formulário de busca */
 form {
     display: flex;
     align-items: center;
     border-radius: 30px;
     overflow: hidden;
-    background-color: #3a3a3a; /* Fundo do input de busca mais escuro */
-    border: 1px solid #555; /* Borda mais escura */
+    background-color: #3a3a3a;
+    border: 1px solid #555;
     margin-left: 20px;
     flex-grow: 1;
     max-width: 400px;
 }
 
-/* Estilos para placeholder do input de busca */
+/* Placeholder do input de busca */
 nav input::placeholder {
-    color: #b0b0b0; /* Cor do placeholder mais clara */
+    color: #b0b0b0;
     font-size: 1em;
     font-style: italic;
 }
 
-/* Estilos para o campo de entrada de texto da busca */
+/* Campo de texto da busca */
 nav input[type="text"] {
     padding: 10px 15px;
     border: none;
     outline: none;
     font-size: 1em;
     width: 100%;
-    background-color: transparent; /* Fundo transparente para herdar do pai (form) */
-    color: #f0f0f0; /* Cor do texto digitado mais clara */
+    background-color: transparent;
+    color: #f0f0f0;
 }
 
-/* Estilos para o botão de busca - Mantém sua cor */
+/* Botão de busca */
 nav button[type="submit"] {
     padding: 10px 15px;
     border: none;
@@ -85,8 +95,8 @@ nav button[type="submit"] {
     border-radius: 0 30px 30px 0;
 }
 
-/* Estilos para a div dos ícones */
-nav > div { 
+/* Container dos ícones de navegação */
+nav > div {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -95,19 +105,25 @@ nav > div {
     margin: 0;
 }
 
-/* Estilos para os ícones - Mantém sua cor */
-nav > div a { 
+/* Links dos ícones de navegação */
+nav > div a {
     color: #fff;
     font-size: 1.5em;
     text-decoration: none;
     margin-left: 10px;
 }
 
+/* Efeito hover nos ícones */
 nav > div a:hover {
     color: #ebdd8f; /* Destaque amarelo */
 }
 
-/* Carrossel */
+/*
+ * ========================================
+ * CARROSSEL
+ * Container e slides das imagens do carrossel.
+ * ========================================
+ */
 .carousel-container {
     width: 100%;
     max-width: none;
@@ -115,9 +131,9 @@ nav > div a:hover {
     height: 300px;
     margin-top: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5); /* Sombra mais intensa */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5); /* Sombra intensa */
     position: relative;
-    background-color: #2c2c2c; /* Fundo do carrossel levemente mais claro que o body */
+    background-color: #2c2c2c;
 }
 
 .carousel-slide {
@@ -128,14 +144,19 @@ nav > div a:hover {
 }
 
 .carousel-slide img {
-    width: 100vw; 
+    width: 100vw;
     height: 100%;
     object-fit: cover;
     display: block;
     flex-shrink: 0;
 }
 
-/* Estilos para o container de localização */
+/*
+ * ========================================
+ * LOCALIZAÇÃO
+ * Exibe a localização atual, com ícone e texto.
+ * ========================================
+ */
 .location-container {
     display: flex;
     align-items: center;
@@ -143,29 +164,36 @@ nav > div a:hover {
     gap: 15px;
     padding: 10px 20px;
     margin-top: 25px;
-    color: #f0f0f0; /* Cor do texto para ser legível no fundo escuro */
+    color: #f0f0f0;
     font-size: 1.1em;
     font-weight: bold;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Borda mais suave e clara */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding-bottom: 15px;
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
 }
 
+/* Ícone de localização */
 .location-container i {
     font-size: 1.3em;
     color: #ebdd8f; /* Ícone com cor de destaque */
 }
 
+/* Parágrafo de texto da localização */
 .location-container p {
     margin: 0;
-    color: #2B1D0E; /* Texto do parágrafo um pouco mais suave */
+    color: #2B1D0E;
     font-weight: normal;
     font-size: 0.95em;
 }
 
-/* Estilo do container de categorias (os blocos clicáveis "EM DESTAQUES", etc.) */
+/*
+ * ========================================
+ * CLASSIFICAÇÃO / CATEGORIAS
+ * Blocos clicáveis de categorias (Ex: "EM DESTAQUES").
+ * ========================================
+ */
 .classification-highlight {
     display: flex;
     border-radius: 8px;
@@ -174,16 +202,15 @@ nav > div a:hover {
     width: 90%;
     max-width: 1200px;
     margin: 20px auto;
-    background-color: #F5F5DC; /* Fundo mais escuro */
-    border: 1px solid #F5F5DC; /* Borda mais escura */
+    background-color: #F5F5DC;
+    border: 1px solid #F5F5DC;
     flex-wrap: wrap;
-/* box-shadow: 0 2px 10px rgba(0,0,0,0.3); /* Sombra para destacar */
 }
 
-/* Estilo de cada categoria (os botões) */
+/* Estilo de cada botão de categoria */
 .classification-highlight a.category-block {
-    background-color: #F5F5DC; /* Fundo do botão mais escuro */
-    color: #2B1D0E; /* Texto do botão claro */
+    background-color: #F5F5DC;
+    color: #2B1D0E;
     text-decoration: none;
     padding: 10px 15px;
     border-radius: 5px;
@@ -193,31 +220,38 @@ nav > div a:hover {
     flex-grow: 1;
     margin: 5px;
     transition: background-color 0.3s ease, border 0.3s ease;
-    border: 1px solid #2B1D0E; /* Borda mais escura */
+    border: 1px solid #2B1D0E;
     min-width: 120px;
 }
 
+/* Efeito hover nos botões de categoria */
 .classification-highlight a.category-block:hover {
-    background-color: #ebdd8f; /* Cor de destaque no hover */
-    color: #2B1D0E; /* Texto escuro no hover */
+    background-color: #ebdd8f; /* Destaque amarelo */
+    color: #2B1D0E;
     border-color: #ebdd8f;
 }
 
-/* Estilos para o conteúdo de cada categoria (as seções que contêm os pratos) */
+/*
+ * ========================================
+ * CONTEÚDO DA CATEGORIA
+ * Container para as seções de pratos (cards).
+ * ========================================
+ */
 .category-content {
-    border: 1px solid #4a4a4a; /* Borda mais escura */
+    border: 1px solid #4a4a4a;
     margin-top: 50px;
     padding: 15px;
-    background-color: #291e12; /* Fundo mais escuro */
+    background-color: #291e12;
     border-radius: 5px;
     width: 90%;
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
     box-sizing: border-box;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.3); /* Sombra para destacar */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
+/* Título da seção de categoria */
 .category-content h2 {
     color: #ebdd8f; /* Título com cor de destaque */
     font-size: 2em;
@@ -228,7 +262,12 @@ nav > div a:hover {
     font-style: italic;
 }
 
-/* --- Estilos para os Cards de Prato --- */
+/*
+ * ========================================
+ * CARDS DE PRATO
+ * Estilos para o container e cada card individual de prato.
+ * ========================================
+ */
 .pratos-categoria-container {
     display: flex;
     flex-wrap: wrap;
@@ -237,13 +276,14 @@ nav > div a:hover {
     padding: 20px 0;
 }
 
+/* Estilo de cada card de prato */
 .card {
-    background-color: #000000; /* Fundo preto para os cards */
-    border: 1px solid #222; /* Borda preta mais escura */
+    background-color: #000000; /* Fundo preto */
+    border: 1px solid #222;
     border-radius: 8px;
     padding-bottom: 15px;
     margin-bottom: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* Sombra para dar destaque */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     transition: transform 0.2s ease-in-out;
     width: 280px;
     display: flex;
@@ -252,12 +292,14 @@ nav > div a:hover {
     text-align: center;
 }
 
+/* Efeito hover no card */
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.3); /* Sombra mais intensa no hover */
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
 }
 
-.card img { 
+/* Imagem do prato no card */
+.card img {
     width: 100%;
     height: 180px;
     object-fit: cover;
@@ -266,6 +308,7 @@ nav > div a:hover {
     display: block;
 }
 
+/* Título do prato no card */
 .card h2 {
     color: #FFFFFF; /* Título do prato branco */
     font-size: 1.3em;
@@ -273,32 +316,123 @@ nav > div a:hover {
     text-align: center;
 }
 
+/* Descrição do prato no card */
 .card p {
-    color: #CCCCCC; /* Descrição do prato um cinza claro */
+    color: #CCCCCC; /* Descrição cinza claro */
     font-size: 0.9em;
     margin: 0 15px 5px 15px;
     text-align: center;
 }
 
-.card p.dish-price { /* Se você adicionou a classe dish-price no JS, use-a */
-    color: #FFFFFF; /* Sua cor vermelha para o preço */
+/* Preço do prato no card */
+.card p.dish-price {
+    color: #FFFFFF; /* Preço vermelho */
     font-weight: bold;
     font-size: 1em;
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 
+/*
+ * ========================================
+ * BOTÕES DOS CARDS
+ * Estilos para "Detalhes" e "Adicionar à Sacola" nos cards.
+ * ========================================
+ */
+.card-buttons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 15px 0;
+    margin-top: auto;
+    gap: 10px;
+    flex-wrap: wrap;
+}
 
-/* --- Rodapé --- */
+/* Estilo base dos botões */
+.card-buttons .btn {
+    flex: 1;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
+    min-width: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Botão "Detalhes" */
+.card-buttons .btn-details {
+    background-color: #3C5D3F; /* Verde vibrante */
+    color: #FFFFFF;
+    border: 1px solid #3C5D3F;
+}
+
+/* Hover do botão "Detalhes" */
+.card-buttons .btn-details:hover {
+    background-color: #3C5D3F;
+    border-color: #3C5D3F;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Botão "Adicionar à Sacola" */
+.card-buttons .btn-add-to-cart {
+    background-color: #3C5D3F; /* Amarelo de destaque */
+    color: #FFFFFF;
+    border: 1px solid #3C5D3F;
+}
+
+/* Hover do botão "Adicionar à Sacola" */
+.card-buttons .btn-add-to-cart:hover {
+    background-color: #3C5D3F;
+    color: #2B1D0E;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Ícone no botão "Adicionar à Sacola" */
+.card-buttons .btn-add-to-cart .icon-container {
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+}
+
+/* Ajustes de tamanho e posição do ícone */
+.card-buttons .btn-add-to-cart .icon-container i {
+    font-size: 1.1em;
+    line-height: 1;
+}
+
+.card-buttons .btn-add-to-cart .icon-container .fa-plus {
+    font-size: 0.7em;
+    position: relative;
+    top: -0.4em;
+    left: -0.2em;
+}
+
+/*
+ * ========================================
+ * RODAPÉ (FOOTER)
+ * Informações da empresa, redes sociais e contato.
+ * ========================================
+ */
 footer {
-    background-color: #2B1D0E; /* Mantém seu marrom escuro atual */
-    color: #D0C0B0; 
+    background-color: #2B1D0E; /* Marrom escuro */
+    color: #D0C0B0;
     padding: 40px 20px 20px;
     margin-top: auto;
     text-align: center;
-    box-shadow: 0 -5px 15px rgba(0,0,0,0.6); /* Sombra mais forte */
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.6);
     border-top: 3px solid #3e2f1e;
 }
 
+/* Container interno do rodapé */
 footer .container {
     display: flex;
     flex-wrap: wrap;
@@ -308,6 +442,7 @@ footer .container {
     gap: 30px;
 }
 
+/* Blocos de informação no rodapé (Sobre Nós, Redes, Contato) */
 footer .sobre-nos,
 footer .redes-sociais,
 footer .contato {
@@ -315,42 +450,48 @@ footer .contato {
     min-width: 250px;
     text-align: left;
     padding: 20px;
-    background-color: #3e2f1e; /* Fundo dos blocos do rodapé mais escuro */
+    background-color: #3e2f1e;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5); /* Sombra mais intensa */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
     border: 1px solid #5a4b3c;
 }
 
+/* Títulos dos blocos do rodapé */
 footer h3 {
-    color: #EBDA8D; /* Mantém sua cor de destaque */
+    color: #EBDA8D; /* Destaque amarelo */
     margin-bottom: 15px;
     font-size: 1.3em;
     border-bottom: 1px solid rgba(235, 221, 143, 0.3);
     padding-bottom: 8px;
 }
 
+/* Texto e listas do rodapé */
 footer p,
 footer ul {
     margin: 0;
     padding: 0;
     list-style: none;
-    color: #D0C0B0; /* Cor do texto no rodapé */
+    color: #D0C0B0;
 }
 
+/* Itens da lista no rodapé */
 footer ul li {
     margin-bottom: 10px;
 }
 
+/* Links do rodapé */
 footer ul li a {
-    color: #f0f0f0; /* Links mais claros */
+    color: #f0f0f0;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
+/* Hover dos links do rodapé */
 footer ul li a:hover {
-    color: #EBDA8D; /* Cor de destaque no hover */
+    color: #EBDA8D;
 }
 
+/* Lista de ícones de redes sociais */
 footer .redes-sociais ul {
     display: flex;
     justify-content: flex-start;
@@ -358,6 +499,7 @@ footer .redes-sociais ul {
     margin-top: 10px;
 }
 
+/* Imagens das redes sociais */
 footer .redes-sociais img {
     height: 30px;
     width: 30px;
@@ -365,10 +507,12 @@ footer .redes-sociais img {
     transition: transform 0.3s ease, filter 0.3s ease;
 }
 
+/* Hover das imagens das redes sociais */
 footer .redes-sociais img:hover {
     transform: scale(1.1);
 }
 
+/* Texto de Copyright */
 footer .copyright {
     border-top: 1px solid rgba(235, 221, 143, 0.1);
     padding-top: 20px;
@@ -377,228 +521,147 @@ footer .copyright {
     color: #8B7A67;
 }
 
-/* --- Estilos para os Botões dos Cards --- */
-
-/* Container dos botões dentro do card */
-.card-buttons {
-    display: flex; /* Para colocar os botões lado a lado */
-    justify-content: space-around; /* Espaçamento entre os botões */
-    align-items: center;
-    padding: 10px 15px 0; /* Padding interno para o container, 0 embaixo para encostar na borda inferior do card */
-    margin-top: auto; /* Empurra o container de botões para o final do card */
-    gap: 10px; /* Espaçamento entre os botões */
-    flex-wrap: wrap; /* Garante que os botões quebrem em telas menores */
-}
-
-.card-buttons .btn {
-    flex: 1; /* Permite que os botões se expandam para ocupar o espaço */
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9em;
-    font-weight: bold;
-    text-align: center;
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
-    min-width: 120px; /* Garante uma largura mínima para o botão */
-    display: flex; /* Para alinhar texto e ícone */
-    justify-content: center; /* Centraliza conteúdo */
-    align-items: center; /* Alinha verticalmente */
-}
-
-/* Estilo para o botão "Detalhes" */
-.card-buttons .btn-details {
-    background-color: #3C5D3F; /* Verde vibrante */
-    color: #FFFFFF; /* Texto branco */
-    border: 1px solid #3C5D3F; /* Borda com a mesma cor para preenchimento */
-}
-
-.card-buttons .btn-details:hover {
-    background-color: #3C5D3F; /* Um verde um pouco mais escuro no hover */
-    border-color: #3C5D3F;
-    transform: translateY(-2px);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-/* Estilo para o botão "Adicionar à Sacola" */
-.card-buttons .btn-add-to-cart {
-    background-color: #3C5D3F; /* Seu amarelo de destaque */
-    color: #FFFFFF; /* Texto marrom escuro (para contraste com o amarelo) */
-    border: 1px solid #3C5D3F; /* Borda com a mesma cor do fundo para um visual preenchido */
-}
-
-.card-buttons .btn-add-to-cart:hover {
-    background-color: #3C5D3F; /* Um pouco mais escuro no hover */
-    color: #2B1D0E; /* Mantém o texto marrom escuro */
-    transform: translateY(-2px);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-/* Estilos para o ícone da sacola no botão "Adicionar à Sacola" */
-.card-buttons .btn-add-to-cart .icon-container {
-    display: flex;
-    align-items: center;
-    margin-left: 5px; /* Espaço entre o texto e o ícone */
-}
-
-.card-buttons .btn-add-to-cart .icon-container i {
-    font-size: 1.1em; /* Tamanho do ícone */
-    line-height: 1; /* Garante alinhamento vertical */
-}
-
-.card-buttons .btn-add-to-cart .icon-container .fa-plus {
-    font-size: 0.7em; /* O '+' menor */
-    position: relative;
-    top: -0.4em; /* Ajusta a posição vertical do '+' */
-    left: -0.2em; /* Ajusta a posição horizontal do '+' sobrepondo um pouco a sacola */
-}
-
-
-/* --- Ajuste para o preço (reconfirmando) --- */
-.card p.dish-price { /* Se você adicionou a classe dish-price no JS, use-a */
-    color: #FFFFFF; /* Sua cor vermelha para o preço */
-    font-weight: bold;
-    font-size: 1em;
-    margin-top: 10px;
-    margin-bottom: 10px; /* Adiciona um pouco de espaço antes dos botões */
-}
-
-/* Media Queries para responsividade dos botões */
-@media (max-width: 768px) {
-    .card-buttons {
-        flex-direction: column; /* Empilha os botões em telas menores */
-        padding: 8px 10px 0;
-        gap: 8px;
-    }
-    .card-buttons .btn {
-        width: 100%; /* Botões ocupam largura total */
-        min-width: unset; /* Remove min-width */
-        padding: 8px 12px;
-        font-size: 0.85em;
-    }
-}
-
-@media (max-width: 480px) {
-    .card-buttons .btn {
-        padding: 7px 10px;
-        font-size: 0.8em;
-    }
-}
-
-/* --- Botão Voltar ao Topo --- */
+/*
+ * ========================================
+ * BOTÃO VOLTAR AO TOPO
+ * Botão flutuante para rolar a página para o topo.
+ * ========================================
+ */
 #scrollToTopBtn {
-    display: none; /* Escondido por padrão, JavaScript o mostrará */
-    position: fixed; /* Fixado na tela */
-    bottom: 20px; /* 20px do fundo */
-    right: 20px; /* 20px da direita */
-    z-index: 99; /* Acima de outros elementos */
-    background-color: #2B1D0E; /* Seu marrom escuro */
+    display: none; /* Escondido por padrão, JS o mostra */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99;
+    background-color: #2B1D0E; /* Marrom escuro */
     color: white;
     border: none;
-    border-radius: 50%; /* Transforma em círculo */
-    width: 45px; /* Largura do círculo */
-    height: 45px; /* Altura do círculo */
-    font-size: 1.2em; /* Tamanho do ícone */
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 1.2em;
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease, transform 0.2s ease, opacity 0.3s ease;
-    display: flex; /* Para centralizar o ícone */
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
+/* Hover do botão Voltar ao Topo */
 #scrollToTopBtn:hover {
-    background-color: #3e2f1e; /* Um pouco mais claro no hover */
-    transform: translateY(-2px); /* Efeito sutil para cima */
+    background-color: #3e2f1e;
+    transform: translateY(-2px);
     opacity: 0.9;
 }
 
-/* --- Sacolinha de Pedidos Flutuante --- */
+/*
+ * ========================================
+ * SACOLINHA DE PEDIDOS FLUTUANTE
+ * Ícone do carrinho de compras e contador de itens.
+ * ========================================
+ */
 #cartIcon {
-    position: fixed; /* Fixado na tela */
-    bottom: 20px; /* Mesma altura do botão de topo para alinhamento */
-    left: 20px; /* 20px da esquerda */
-    z-index: 99; /* Acima de outros elementos */
-    background-color: #EBDA8D; /* Seu amarelo de destaque */
-    color: #2B1D0E; /* Cor do ícone */
+    position: fixed;
+    /* REMOVA ESTA LINHA: bottom: 10px; */
+    left: 20px;
+    z-index: 99;
+    background-color: #3C5D3F; /* Verde */
+    color: white;
     border: none;
-    border-radius: 50%; /* Transforma em círculo */
-    width: 50px; /* Largura do círculo */
-    height: 50px; /* Altura do círculo */
-    font-size: 1.6em; /* Tamanho do ícone da sacola */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 2em;
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease, transform 0.2s ease, opacity 0.3s ease;
-    display: flex; /* Para centralizar o ícone */
+    display: flex;
     justify-content: center;
     align-items: center;
-    position: relative; /* Para posicionar o contador dentro dela */
+    top: 50%; /* Essencial para posicionar no meio da tela verticalmente */
+    transform: translateY(-50%); /* Essencial para centralizar verticalmente, compensando o 50% */
 }
 
+/* Hover da sacolinha */
 #cartIcon:hover {
-    background-color: #E0CD84; /* Um pouco mais escuro no hover */
-    transform: translateY(-2px); /* Efeito sutil para cima */
+    background-color: #3C5D3F;
+    transform: translateY(-2px);
     opacity: 0.9;
 }
 
-#cartIcon #cartItemCount {
-    position: absolute; /* Posiciona o contador sobre a sacola */
-    top: -5px; /* Ajusta a posição vertical */
-    right: -5px; /* Ajusta a posição horizontal */
-    background-color: #B22222; /* Sua cor vermelha para destaque */
-    color: white;
-    font-size: 0.7em; /* Tamanho da fonte do contador */
-    font-weight: bold;
-    border-radius: 50%; /* Transforma em círculo */
-    padding: 3px 6px; /* Padding para o número */
-    min-width: 18px; /* Garante que o círculo seja visível mesmo com 1 dígito */
-    text-align: center;
-    line-height: 1; /* Alinha o texto verticalmente */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    /* display: none; /* Pode esconder se o contador for 0 */
+/* Ícone da sacolinha */
+#cartIcon i {
+    margin-right: 5px;
 }
 
-/* Estilos do Modal da Sacola */
+/* Contador de itens na sacola */
+#cartItemCount {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #ff9800; /* Laranja */
+    color: white;
+    font-size: 0.7em;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 5px 8px;
+    min-width: 25px;
+    text-align: center;
+    line-height: 1;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transform: translate(50%, -50%);
+}
+
+/*
+ * ========================================
+ * MODAL DA SACOLA (CARRINHO)
+ * Janela pop-up que exibe os itens do carrinho e resumo do pedido.
+ * ========================================
+ */
 .modal {
     display: none; /* Escondido por padrão */
-    position: fixed; /* Fixo na tela */
-    z-index: 1000; /* Acima de outros elementos */
+    position: fixed;
+    z-index: 1000;
     left: 0;
     top: 0;
-    width: 100%; /* Largura total */
-    height: 100%; /* Altura total */
-    overflow: auto; /* Habilita rolagem se o conteúdo for muito grande */
-    background-color: rgba(0,0,0,0.4); /* Fundo semi-transparente */
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center; /* Centraliza verticalmente */
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    justify-content: center;
+    align-items: center;
 }
 
+/* Conteúdo interno do modal */
 .modal-content {
     background-color: #fefefe;
-    margin: auto; /* Para centralizar */
+    margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Largura do modal */
-    max-width: 600px; /* Largura máxima */
+    width: 80%;
+    max-width: 600px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     position: relative;
-    max-height: 90vh; /* Altura máxima para caber na tela */
+    max-height: 90vh;
     display: flex;
     flex-direction: column;
 }
 
+/* Botão de fechar o modal */
 .close-button {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
-    position: absolute; /* Posiciona o botão de fechar */
+    position: absolute;
     top: 10px;
     right: 20px;
     cursor: pointer;
 }
 
+/* Hover do botão de fechar */
 .close-button:hover,
 .close-button:focus {
     color: black;
@@ -606,13 +669,15 @@ footer .copyright {
     cursor: pointer;
 }
 
+/* Container dos itens na sacola dentro do modal */
 .cart-items-container {
-    flex-grow: 1; /* Permite que o container de itens cresça e ocupe o espaço */
-    overflow-y: auto; /* Adiciona scroll se a lista de itens for grande */
+    flex-grow: 1;
+    overflow-y: auto;
     margin-bottom: 20px;
-    padding-right: 10px; /* Espaço para a barra de rolagem */
+    padding-right: 10px;
 }
 
+/* Estilo de cada item no carrinho */
 .cart-item {
     display: flex;
     justify-content: space-between;
@@ -621,10 +686,12 @@ footer .copyright {
     border-bottom: 1px solid #eee;
 }
 
+/* Remove borda do último item do carrinho */
 .cart-item:last-child {
     border-bottom: none;
 }
 
+/* Informações do item no carrinho (imagem, nome, preço) */
 .cart-item-info {
     display: flex;
     align-items: center;
@@ -632,6 +699,7 @@ footer .copyright {
     flex-grow: 1;
 }
 
+/* Imagem do item no carrinho */
 .cart-item-info img {
     width: 60px;
     height: 60px;
@@ -639,26 +707,30 @@ footer .copyright {
     border-radius: 4px;
 }
 
+/* Nome do item no carrinho */
 .cart-item-details h4 {
     margin: 0;
     font-size: 1.1em;
     color: #333;
 }
 
+/* Detalhes do item no carrinho */
 .cart-item-details p {
     margin: 5px 0 0;
     font-size: 0.9em;
     color: #777;
 }
 
+/* Controles de quantidade e remoção do item */
 .cart-item-controls {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
+/* Botões de controle de item (remover) */
 .cart-item-controls button {
-    background-color: #f44336;
+    background-color: #f44336; /* Vermelho */
     color: white;
     border: none;
     padding: 5px 10px;
@@ -670,15 +742,18 @@ footer .copyright {
     cursor: pointer;
 }
 
+/* Botões de quantidade (+/-) */
 .cart-item-controls button.quantity-btn {
-    background-color: #007bff;
+    background-color: #007bff; /* Azul */
     padding: 3px 8px;
 }
 
+/* Quantidade do item */
 .cart-item-controls span {
     font-weight: bold;
 }
 
+/* Resumo total do carrinho */
 .cart-summary {
     text-align: right;
     font-size: 1.2em;
@@ -687,8 +762,9 @@ footer .copyright {
     border-top: 1px solid #eee;
 }
 
+/* Botão de Finalizar Pedido */
 .btn-checkout {
-    background-color: #28a745;
+    background-color: #28a745; /* Verde */
     color: white;
     padding: 10px 20px;
     border: none;
@@ -698,51 +774,20 @@ footer .copyright {
     margin-top: 10px;
 }
 
+/* Estilo para botão de Finalizar Pedido desabilitado */
 .btn-checkout:disabled {
     background-color: #cccccc;
     cursor: not-allowed;
 }
 
-/* Estilos para o ícone do carrinho */
-#cartIcon {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color:  #3C5D3F; /* Cor do Coco Bambu */
-    color: white;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2em;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    z-index: 999; /* Garante que fique acima de outros elementos */
-}
-
-#cartIcon i {
-    margin-right: 5px; /* Espaço entre o ícone e o contador */
-}
-
-#cartItemCount {
-    background-color: #ff9800;
-    color: white;
-    border-radius: 50%;
-    padding: 5px 8px;
-    font-size: 0.7em;
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    transform: translate(50%, -50%); /* Ajusta a posição */
-    min-width: 25px; /* Garante que o círculo seja visível mesmo com 1 dígito */
-    text-align: center;
-}
-
-/* --- Estilos para o botão "Limpar Busca" --- */
+/*
+ * ========================================
+ * BOTÃO "LIMPAR BUSCA"
+ * Botão para limpar os resultados da busca.
+ * ========================================
+ */
 .btn-clear-search {
-    background-color: #5A4B3C; /* Um marrom médio, que combine com sua paleta */
+    background-color: #5A4B3C; /* Marrom médio */
     color: #FFFFFF;
     border: 1px solid #5A4B3C;
     padding: 10px 20px;
@@ -751,377 +796,116 @@ footer .copyright {
     font-size: 1em;
     font-weight: bold;
     text-align: center;
-    margin-top: 20px; /* Espaço acima dos resultados */
-    margin-bottom: 20px; /* Espaço abaixo, se houver */
-    display: block; /* Para ocupar a largura total do container */
-    width: fit-content; /* Ajusta a largura ao conteúdo */
-    margin-left: auto; /* Centraliza */
-    margin-right: auto; /* Centraliza */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
     transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
 }
 
+/* Hover do botão "Limpar Busca" */
 .btn-clear-search:hover {
-    background-color: #6D5E4F; /* Um pouco mais escuro no hover */
+    background-color: #6D5E4F;
     border-color: #6D5E4F;
     transform: translateY(-2px);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+/* Ícone no botão "Limpar Busca" */
 .btn-clear-search i {
-    margin-right: 8px; /* Espaço entre o ícone e o texto */
+    margin-right: 8px;
 }
 
-/* Ajuste para quando o botão estiver no searchResultsContainer */
+/* Ajuste específico para o botão dentro do container de resultados de busca */
 #searchResultsContainer .btn-clear-search {
-    margin-top: 15px; /* Ajuste a margem se necessário */
+    margin-top: 15px;
     margin-bottom: 15px;
 }
 
-/* Media Queries para ajuste em telas menores */
-@media (max-width: 768px) {
-    #scrollToTopBtn {
-        bottom: 15px;
-        right: 15px;
-        width: 40px;
-        height: 40px;
-        font-size: 1.1em;
-    }
+/*
+ * ========================================
+ * MEDIA QUERIES (RESPONSIVIDADE)
+ * Ajustes de layout para diferentes tamanhos de tela (mobile, tablet).
+ * ========================================
+ */
 
-    #cartIcon {
-        bottom: 15px;
-        left: 15px;
-        width: 45px;
-        height: 45px;
-        font-size: 1.4em;
-    }
-
-    #cartIcon #cartItemCount {
-        top: -4px;
-        right: -4px;
-        font-size: 0.65em;
-        padding: 2px 5px;
-        min-width: 16px;
-    }
-}
-@media (max-width: 480px) {
-    #scrollToTopBtn {
-        bottom: 10px;
-        right: 10px;
-        width: 35px;
-        height: 35px;
-        font-size: 1em;
-    }
-
-    #cartIcon {
-        bottom: 10px;
-        left: 10px;
-        width: 40px;
-        height: 40px;
-        font-size: 1.3em;
-    }
-
-    #cartIcon #cartItemCount {
-        top: -3px;
-        right: -3px;
-        font-size: 0.6em;
-        padding: 2px 4px;
-        min-width: 14px;
-    }
-}
-
-
-/* --- Media Queries para Responsividade --- */
-
-/* Para telas menores que 1024px (laptops e tablets em modo paisagem) */
+/* Para telas menores que 1024px */
 @media (max-width: 1024px) {
-    header {
-        padding: 10px 15px;
-    }
-
-    nav {
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-    }
-
-    nav a img {
-        max-height: 70px;
-        margin-bottom: 10px;
-    }
-
-    form {
-        margin-left: 0;
-        margin-top: 10px;
-        width: 90%;
-        max-width: 350px;
-    }
-
-    nav input[type="text"] {
-        width: calc(100% - 60px);
-    }
-
-    nav button[type="submit"] {
-        padding: 9px 12px;
-    }
-
-    nav > div { 
-        justify-content: center;
-        margin-top: 15px;
-        width: 100%;
-    }
-
-    nav > div a {
-        font-size: 1.3em;
-        margin: 0 8px;
-    }
-
-    .carousel-container {
-        height: 250px;
-    }
-
-    .location-container {
-        flex-direction: column;
-        text-align: center;
-        gap: 8px;
-        padding: 10px 15px;
-    }
-
-    .location-container i {
-        margin-right: 0;
-    }
-
-    .classification-highlight {
-        flex-direction: column;
-        width: 95%;
-        padding: 10px;
-    }
-
-    .classification-highlight a.category-block {
-        margin: 5px 0;
-        width: 100%;
-    }
-
-    .category-content {
-        width: 95%;
-        padding: 12px;
-    }
-
-    .category-content h2 {
-        font-size: 1.8em;
-    }
-
-    footer .container {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-    }
-
-    footer .sobre-nos,
-    footer .redes-sociais,
-    footer .contato {
-        width: 90%;
-        min-width: unset;
-        text-align: center;
-        padding: 15px;
-    }
-
-    footer .redes-sociais ul {
-        justify-content: center;
-    }
-
-    .pratos-categoria-container {
-        padding: 10px 0;
-    }
-    .card {
-        width: calc(50% - 20px); 
-        max-width: 300px;
-        margin-bottom: 20px;
-    }
-    .card img {
-        height: 150px;
-    }
+    header { padding: 10px 15px; }
+    nav { flex-direction: column; align-items: center; width: 100%; }
+    nav a img { max-height: 70px; margin-bottom: 10px; }
+    form { margin-left: 0; margin-top: 10px; width: 90%; max-width: 350px; }
+    nav input[type="text"] { width: calc(100% - 60px); }
+    nav button[type="submit"] { padding: 9px 12px; }
+    nav > div { justify-content: center; margin-top: 15px; width: 100%; }
+    nav > div a { font-size: 1.3em; margin: 0 8px; }
+    .carousel-container { height: 250px; }
+    .location-container { flex-direction: column; text-align: center; gap: 8px; padding: 10px 15px; }
+    .location-container i { margin-right: 0; }
+    .classification-highlight { flex-direction: column; width: 95%; padding: 10px; }
+    .classification-highlight a.category-block { margin: 5px 0; width: 100%; }
+    .category-content { width: 95%; padding: 12px; }
+    .category-content h2 { font-size: 1.8em; }
+    footer .container { flex-direction: column; align-items: center; gap: 20px; }
+    footer .sobre-nos, footer .redes-sociais, footer .contato { width: 90%; min-width: unset; text-align: center; padding: 15px; }
+    footer .redes-sociais ul { justify-content: center; }
+    .pratos-categoria-container { padding: 10px 0; }
+    .card { width: calc(50% - 20px); max-width: 300px; margin-bottom: 20px; }
+    .card img { height: 150px; }
 }
 
-/* Para telas menores que 768px (tablets em modo retrato e smartphones grandes) */
+/* Para telas menores que 768px */
 @media (max-width: 768px) {
-    header {
-        padding: 8px 10px;
-        border-radius: 0;
-    }
-
-    nav a img {
-        max-height: 60px;
-    }
-
-    form {
-        width: 100%;
-        max-width: none;
-    }
-
-    nav input[type="text"] {
-        padding: 8px 12px;
-        font-size: 0.9em;
-    }
-
-    nav button[type="submit"] {
-        padding: 8px 12px;
-        font-size: 0.9em;
-    }
-
-    nav > div a {
-        font-size: 1.1em;
-        margin: 0 5px;
-    }
-
-    .carousel-container {
-        height: 200px;
-    }
-
-    .location-container {
-        font-size: 1em;
-    }
-
-    .location-container i {
-        font-size: 1.1em;
-    }
-
-    .classification-highlight {
-        padding: 8px;
-    }
-
-    .classification-highlight a.category-block {
-        font-size: 0.85em;
-        padding: 8px 12px;
-    }
-
-    .category-content {
-        margin-top: 20px;
-        padding: 10px;
-    }
-
-    .category-content h2 {
-        font-size: 1.5em;
-    }
-
-    footer {
-        padding: 30px 15px 15px;
-    }
-
-    footer .container {
-        gap: 15px;
-    }
-
-    footer .sobre-nos,
-    footer .redes-sociais,
-    footer .contato {
-        padding: 12px;
-    }
-
-    footer h3 {
-        font-size: 1.2em;
-    }
-
-    footer p,
-    footer ul {
-        font-size: 0.85em;
-    }
-
-    .card {
-        width: 100%;
-        margin-left: 0;
-        margin-right: 0;
-        padding-left: 0;
-        padding-right: 0;
-    }
+    header { padding: 8px 10px; border-radius: 0; }
+    nav a img { max-height: 60px; }
+    form { width: 100%; max-width: none; }
+    nav input[type="text"] { padding: 8px 12px; font-size: 0.9em; }
+    nav button[type="submit"] { padding: 8px 12px; font-size: 0.9em; }
+    nav > div a { font-size: 1.1em; margin: 0 5px; }
+    .carousel-container { height: 200px; }
+    .location-container { font-size: 1em; }
+    .location-container i { font-size: 1.1em; }
+    .classification-highlight { padding: 8px; }
+    .classification-highlight a.category-block { font-size: 0.85em; padding: 8px 12px; }
+    .category-content { margin-top: 20px; padding: 10px; }
+    .category-content h2 { font-size: 1.5em; }
+    footer { padding: 30px 15px 15px; }
+    footer .container { gap: 15px; }
+    footer .sobre-nos, footer .redes-sociais, footer .contato { padding: 12px; }
+    footer h3 { font-size: 1.2em; }
+    footer p, footer ul { font-size: 0.85em; }
+    .card { width: 100%; margin-left: 0; margin-right: 0; padding-left: 0; padding-right: 0; }
+    .card-buttons { flex-direction: column; padding: 8px 10px 0; gap: 8px; }
+    .card-buttons .btn { width: 100%; min-width: unset; padding: 8px 12px; font-size: 0.85em; }
+    #scrollToTopBtn { bottom: 15px; right: 15px; width: 40px; height: 40px; font-size: 1.1em; }
+    #cartIcon { bottom: 15px; left: 15px; width: 45px; height: 45px; font-size: 1.4em; }
+    #cartIcon #cartItemCount { top: -4px; right: -4px; font-size: 0.65em; padding: 2px 5px; min-width: 16px; }
 }
 
-/* Para telas menores que 480px (smartphones menores) */
+/* Para telas menores que 480px */
 @media (max-width: 480px) {
-    header {
-        padding: 5px;
-    }
-
-    nav a img {
-        max-height: 50px;
-    }
-
-    form {
-        border-radius: 20px;
-    }
-
-    nav input[type="text"] {
-        padding: 7px 10px;
-        font-size: 0.85em;
-    }
-
-    nav button[type="submit"] {
-        padding: 7px 10px;
-        font-size: 0.85em;
-        border-radius: 0 20px 20px 0;
-    }
-
-    nav > div a {
-        font-size: 1em;
-        margin: 0 3px;
-    }
-
-    .carousel-container {
-        height: 150px;
-        border-radius: 4px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-    }
-
-    .location-container {
-        font-size: 0.9em;
-        gap: 10px;
-        padding: 8px 10px;
-        padding-bottom: 10px;
-    }
-
-    .location-container i {
-        font-size: 1em;
-    }
-
-    .classification-highlight {
-        padding: 5px;
-    }
-
-    .classification-highlight a.category-block {
-        font-size: 0.8em;
-        padding: 6px 8px;
-    }
-
-    .category-content {
-        margin-top: 15px;
-        padding: 8px;
-    }
-
-    .category-content h2 {
-        font-size: 1.2em;
-    }
-
-    footer {
-        padding: 20px 10px 10px;
-    }
-
-    footer .sobre-nos,
-    footer .redes-sociais,
-    footer .contato {
-        padding: 10px;
-    }
-
-    footer h3 {
-        font-size: 1.1em;
-    }
-
-    footer p,
-    footer ul {
-        font-size: 0.8em;
-    }
-
-    footer .copyright {
-        font-size: 0.75em;
-        padding-top: 15px;
-        margin-top: 15px;
-    }
+    header { padding: 5px; }
+    nav a img { max-height: 50px; }
+    form { border-radius: 20px; }
+    nav input[type="text"] { padding: 7px 10px; font-size: 0.85em; }
+    nav button[type="submit"] { padding: 7px 10px; font-size: 0.85em; border-radius: 0 20px 20px 0; }
+    nav > div a { font-size: 1em; margin: 0 3px; }
+    .carousel-container { height: 150px; border-radius: 4px; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+    .location-container { font-size: 0.9em; gap: 10px; padding: 8px 10px; padding-bottom: 10px; }
+    .location-container i { font-size: 1em; }
+    .classification-highlight { padding: 5px; }
+    .classification-highlight a.category-block { font-size: 0.8em; padding: 6px 8px; }
+    .category-content { margin-top: 15px; padding: 8px; }
+    .category-content h2 { font-size: 1.2em; }
+    footer { padding: 20px 10px 10px; }
+    footer .sobre-nos, footer .redes-sociais, footer .contato { padding: 10px; }
+    footer h3 { font-size: 1.1em; }
+    footer p, footer ul { font-size: 0.8em; }
+    footer .copyright { font-size: 0.75em; padding-top: 15px; margin-top: 15px; }
+    .card-buttons .btn { padding: 7px 10px; font-size: 0.8em; }
+    #scrollToTopBtn { bottom: 10px; right: 10px; width: 35px; height: 35px; font-size: 1em; }
+    #cartIcon { bottom: 10px; left: 10px; width: 40px; height: 40px; font-size: 1.3em; }
+    #cartIcon #cartItemCount { top: -3px; right: -3px; font-size: 0.6em; padding: 2px 4px; min-width: 14px; }
 }
